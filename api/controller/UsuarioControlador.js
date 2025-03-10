@@ -1,10 +1,12 @@
 import {UsuariosModelo} from "../model/UsuariosModelo.js"
+import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 
 export default {
     registro: async(req, res)=>{
         try{
 
-            
+            const hash = await bcrypt.hash(req.body.contraseña,10)
             const usuario = {
                 nombre:req.body.nombre,
                 contraseña:hash,
@@ -39,7 +41,7 @@ export default {
         }
 
         const load = {id: usuario.id, correo: usuario.correo}
-        const token = await jwt.sign(JSON.stringify(usuario),process.env.PRIVATE_KEY);
+        const token = await jwt.sign(JSON.stringify(usuario),process.env.DB);
 
         return res.status(200).json({token})
 

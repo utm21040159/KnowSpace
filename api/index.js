@@ -3,7 +3,8 @@ import express from 'express';
 import  mongoose  from 'mongoose';
 import cors from 'cors'; 
 import helmet from 'helmet';
-import UsuarioController from './controller/UsuarioController.js';
+import UsuarioContolador from './controller/UsuarioControlador.js';
+import PublicacionControlador from './controller/Publicacion.Controlador.js';
 
 dotenv.config();
 
@@ -29,5 +30,9 @@ app.listen(4000,()=>{
     console.log("Servidor corriendo")
 })
 
-app.post("/usuario/registro", UsuarioController.registro)
-app.post("/usuario/login", UsuarioController.login)
+app.post("/usuario/registro", UsuarioContolador.registro)
+app.post("/usuario/login", UsuarioContolador.login)
+
+app.post("/publicacion/crear", PublicacionControlador.crearPublicacion)
+app.put("/publicacion/actualizar/:id", PublicacionControlador.actualizarPublicacion)
+app.delete("/eliminar/:id", PublicacionControlador.eliminarPublicacion);

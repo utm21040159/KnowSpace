@@ -25,4 +25,4 @@ const UsuarioSchema = new Schema([
    
 ])
 
-export const UsuarioModel = model('Usuarios', UsuarioSchema)
+export const UsuariosModelo = model('Usuarios', UsuarioSchema)
